@@ -16,7 +16,7 @@ app.post("/Cliente", async (req, res) => {
     try {
         const Cliente = req.body
         const senhaCript = bcrypt.hashSync(Cliente.senha, 10)
-        Cliente.senha = senhaCript
+        Cliente.Senha = senhaCript
 
        
         const resultado = await db.pool.query(
@@ -91,7 +91,7 @@ app.put("/Cliente/:id", async (req, res) => {
                 Nome = ?,
                 CPF = ?,
                 Email = ?,
-                Senha = COALESCE(?, senha),
+                Senha = COALESCE(?, Senha),
                 Celular = ?
              WHERE id = ?`,
             [
@@ -135,3 +135,9 @@ app.listen(port, () => {
     console.log("API rodando na porta " + port)
 })
 
+app.post("/login", async (req,res) => {
+    try{
+        const user = req.body
+        const resultado = await db.pool.query()
+    }
+})
